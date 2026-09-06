@@ -1,0 +1,418 @@
+/* =========================
+   Main Page
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #f4f7fb;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+
+/* =========================
+   Main Header
+   ========================= */
+
+.main-header {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  padding: 35px 20px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+}
+
+.main-header h1 {
+  color: white;
+  font-size: 42px;
+  margin: 0 0 8px;
+  letter-spacing: 1px;
+}
+
+.main-header p {
+  color: #dbeafe;
+  margin: 0;
+}
+
+
+/* =========================
+   Quick Stats
+   ========================= */
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 25px 0 35px;
+}
+
+.stat-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+.stat-card p {
+  color: #64748b;
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.stat-card strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 24px;
+  color: #2563eb;
+}
+
+
+/* =========================
+   Tools Section
+   ========================= */
+
+.tools-title {
+  color: #1e40af;
+  font-size: 28px;
+  margin: 10px 0 25px;
+  letter-spacing: 0.5px;
+}
+
+.tools-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  align-items: start;
+}
+
+
+/* =========================
+   Tool Cards
+   ========================= */
+
+.tool-card {
+  background-color: white;
+  padding: 25px;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.tool-card input {
+  padding: 10px;
+  margin: 8px;
+  max-width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.tool-card button {
+  margin-top: 10px;
+}
+
+
+/* =========================
+   Buttons
+   ========================= */
+
+button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.03);
+}
+
+
+/* =========================
+   General Text
+   ========================= */
+
+p {
+  color: #475569;
+  font-size: 18px;
+}
+
+
+/* =========================
+   Calculator Results
+   ========================= */
+
+#result,
+#attendance-result,
+#cgpa-result,
+#countdown-result {
+  color: #16a34a;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+
+/* =========================
+   Study Planner
+   ========================= */
+
+#task-list p {
+  background-color: #f1f5f9;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#task-list p:hover {
+  transform: translateX(5px);
+  background-color: #e2e8f0;
+}
+
+#task-list input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+#task-list button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+
+/* =========================
+   Mobile Layout
+   ========================= */
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .main-header {
+    padding: 28px 15px;
+  }
+
+  .main-header h1 {
+    font-size: 32px;
+  }
+
+  .tools-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .quick-stats {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .tool-card {
+    padding: 20px;
+    margin: 15px auto;
+  }
+
+  .welcome-card {
+  padding: 20px 18px;
+}
+
+.welcome-card h2 {
+  font-size: 22px;
+}
+}
+.welcome-card {
+  background-color: white;
+  padding: 25px;
+  margin: 20px 0 30px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #2563eb;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.welcome-card h2 {
+  color: #1e40af;
+  margin: 0 0 10px;
+  font-size: 26px;
+}
+
+.welcome-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* =========================
+   Mobile Mode
+   ========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .main-header {
+        padding: 20px 10px;
+    }
+
+    .main-header h1 {
+        font-size: 26px;
+    }
+
+    .welcome-card {
+        padding: 20px;
+    }
+
+    .tools-container {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        padding: 18px;
+    }
+
+}
+/* =========================
+   Study Planner Task Cards
+   ========================= */
+
+.task-item {
+    background-color: #f5f7fb;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+.task-item strong {
+    font-size: 18px;
+}
+
+.task-item p {
+    margin: 8px 0;
+}
+
+.task-item button {
+    margin-top: 8px;
+    margin-right: 5px;
+}
+/* Priority Badges */
+
+.task-priority {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.task-priority.low {
+    background-color: #dff5e1;
+}
+
+.task-priority.medium {
+    background-color: #fff3cd;
+}
+
+.task-priority.high {
+    background-color: #f8d7da;
+}
+/* =========================
+   Dashboard Polish
+   ========================= */
+
+.stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card strong {
+    font-size: 24px;
+}
+.welcome-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.welcome-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+/* =========================
+   Tool Card Polish
+   ========================= */
+
+.tool-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+/* =========================
+   Button Polish
+   ========================= */
+
+button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}

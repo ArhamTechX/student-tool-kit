@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Tool Kit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="main-header">
+    <h1>🎓 Student Tool Kit</h1>
+    <p>Your little digital student assistant</p>
+</header>
+
+
+<!-- Quick Stats -->
+<div class="quick-stats">
+
+    <div class="stat-card">
+        <h3>🛠️</h3>
+        <p>Tools</p>
+        <strong id="tool-count">0</strong>
+    </div>
+
+    <div class="stat-card">
+        <h3>📚</h3>
+        <p>Study Tasks</p>
+        <strong id="task-count">0</strong>
+    </div>
+
+    <div class="stat-card">
+        <h3>🎓</h3>
+        <p>Student Mode</p>
+        <strong>ON</strong>
+    </div>
+
+</div>
+
+
+<!-- Welcome Card -->
+<div class="welcome-card">
+    <h2>👋 Welcome to Student Tool Kit!</h2>
+
+    <p>
+        Everything you need to stay organized, calculate smarter,
+        and keep track of your studies.
+    </p>
+</div>
+
+
+<h2 class="tools-title">🛠️ Student Tools</h2>
+
+
+<div class="tools-container">
+
+
+    <!-- Percentage Calculator -->
+    <div class="tool-card">
+
+        <h2>📊 Percentage Calculator</h2>
+
+        <p>Calculate your exam percentage easily.</p>
+
+        <label for="obtained">Marks obtained:</label>
+
+        <input
+            type="number"
+            id="obtained"
+            placeholder="Example: 80"
+        >
+
+        <br><br>
+
+        <label for="total">Total marks:</label>
+
+        <input
+            type="number"
+            id="total"
+            placeholder="Example: 100"
+        >
+
+        <br><br>
+
+        <button onclick="calculatePercentage()">
+            Calculate
+        </button>
+
+        <p id="result"></p>
+
+    </div>
+
+
+    <!-- Attendance Calculator -->
+    <div class="tool-card">
+
+        <h2>📅 Attendance Calculator</h2>
+
+        <p>Check your attendance percentage.</p>
+
+        <label for="attended">
+            Classes attended:
+        </label>
+
+        <input
+            type="number"
+            id="attended"
+            placeholder="Example: 42"
+        >
+
+        <br><br>
+
+        <label for="conducted">
+            Total classes conducted:
+        </label>
+
+        <input
+            type="number"
+            id="conducted"
+            placeholder="Example: 50"
+        >
+
+        <br><br>
+
+        <button onclick="calculateAttendance()">
+            Calculate Attendance
+        </button>
+
+        <p id="attendance-result"></p>
+
+    </div>
+
+
+    <!-- CGPA Calculator -->
+    <div class="tool-card">
+
+        <h2>🎓 CGPA Calculator</h2>
+
+        <p>Calculate your CGPA using grade points.</p>
+
+        <label for="grade1">
+            Subject 1 Grade Point:
+        </label>
+
+        <input
+            type="number"
+            id="grade1"
+            placeholder="Example: 8"
+        >
+
+        <br><br>
+
+        <label for="grade2">
+            Subject 2 Grade Point:
+        </label>
+
+        <input
+            type="number"
+            id="grade2"
+            placeholder="Example: 7"
+        >
+
+        <br><br>
+
+        <label for="grade3">
+            Subject 3 Grade Point:
+        </label>
+
+        <input
+            type="number"
+            id="grade3"
+            placeholder="Example: 9"
+        >
+
+        <br><br>
+
+        <button onclick="calculateCGPA()">
+            Calculate CGPA
+        </button>
+
+        <p id="cgpa-result"></p>
+
+    </div>
+
+
+    <!-- Exam Countdown -->
+    <div class="tool-card">
+
+        <h2>📅 Exam Countdown</h2>
+
+        <p>Countdown to your next exam.</p>
+
+        <label for="exam-date">
+            Select exam date:
+        </label>
+
+        <input
+            type="date"
+            id="exam-date"
+        >
+
+        <br><br>
+
+        <button onclick="startCountdown()">
+            Start Countdown
+        </button>
+
+        <p id="countdown-result"></p>
+
+    </div>
+
+
+    <!-- Study Planner -->
+    <div class="tool-card">
+
+        <h2>📚 Study Planner & Tasks</h2>
+
+        <p>
+            Plan your studies and keep track of your tasks.
+        </p>
+
+        <label for="task-subject">
+            Subject:
+        </label>
+
+        <input
+            type="text"
+            id="task-subject"
+            placeholder="Example: C Programming"
+        >
+
+        <br><br>
+
+        <label for="task-input">
+            Task:
+        </label>
+
+        <input
+            type="text"
+            id="task-input"
+            placeholder="Example: Practice loops"
+        >
+
+        <br><br>
+
+        <label for="task-priority">
+            Priority:
+        </label>
+
+        <select id="task-priority">
+
+            <option value="Low">
+                🟢 Low
+            </option>
+
+            <option value="Medium" selected>
+                🟡 Medium
+            </option>
+
+            <option value="High">
+                🔴 High
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <label for="task-date">
+            Due date:
+        </label>
+
+        <input
+            type="date"
+            id="task-date"
+        >
+
+        <br><br>
+
+        <button onclick="addTask()">
+            ➕ Add Task
+        </button>
+
+        <div id="task-list"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+// ===============================
+// Percentage Calculator
+// ===============================
+
+function calculatePercentage() {
+
+    let obtained =
+        document.getElementById("obtained").value;
+
+    let total =
+        document.getElementById("total").value;
+
+
+    if (
+        obtained === "" ||
+        total === "" ||
+        total == 0
+    ) {
+
+        document.getElementById("result").innerHTML =
+            "Please enter valid marks.";
+
+        return;
+    }
+
+
+    let percentage =
+        ((obtained / total) * 100).toFixed(2);
+
+
+    document.getElementById("result").innerHTML =
+        "Your percentage is: " +
+        percentage +
+        "%";
+}
+
+
+
+// ===============================
+// Attendance Calculator
+// ===============================
+
+function calculateAttendance() {
+
+    let attended =
+        document.getElementById("attended").value;
+
+    let conducted =
+        document.getElementById("conducted").value;
+
+
+    if (
+        attended === "" ||
+        conducted === "" ||
+        conducted == 0
+    ) {
+
+        document.getElementById("attendance-result").innerHTML =
+            "Please enter valid class numbers.";
+
+        return;
+    }
+
+
+    let attendance =
+        ((attended / conducted) * 100).toFixed(2);
+
+
+    document.getElementById("attendance-result").innerHTML =
+        "Your attendance is: " +
+        attendance +
+        "%";
+}
+
+
+
+// ===============================
+// CGPA Calculator
+// ===============================
+
+function calculateCGPA() {
+
+    let grade1 =
+        document.getElementById("grade1").value;
+
+    let grade2 =
+        document.getElementById("grade2").value;
+
+    let grade3 =
+        document.getElementById("grade3").value;
+
+
+    if (
+        grade1 === "" ||
+        grade2 === "" ||
+        grade3 === ""
+    ) {
+
+        document.getElementById("cgpa-result").innerHTML =
+            "Please enter all grade points.";
+
+        return;
+    }
+
+
+    let cgpa =
+        (
+            (
+                Number(grade1) +
+                Number(grade2) +
+                Number(grade3)
+            ) / 3
+        ).toFixed(2);
+
+
+    document.getElementById("cgpa-result").innerHTML =
+        "Your CGPA is: " +
+        cgpa;
+}
+
+
+
+// ===============================
+// Exam Countdown
+// ===============================
+
+function startCountdown() {
+
+    let examDate =
+        document.getElementById("exam-date").value;
+
+
+    if (examDate === "") {
+
+        document.getElementById("countdown-result").innerHTML =
+            "Please select your exam date.";
+
+        return;
+    }
+
+
+    let today = new Date();
+
+    let exam = new Date(examDate);
+
+    let difference = exam - today;
+
+
+    let days =
+        Math.ceil(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    if (days < 0) {
+
+        document.getElementById("countdown-result").innerHTML =
+            "That exam date has already passed.";
+
+    } else {
+
+        document.getElementById("countdown-result").innerHTML =
+            "Your exam is in " +
+            days +
+            " days! 📚";
+    }
+
+}
+
+
+
+// ===============================
+// Study Planner - Add Task
+// ===============================
+
+function addTask() {
+
+    let subject =
+        document.getElementById("task-subject").value;
+
+    let task =
+        document.getElementById("task-input").value;
+
+    let priority =
+        document.getElementById("task-priority").value;
+
+    let date =
+        document.getElementById("task-date").value;
+
+
+    if (
+        subject === "" ||
+        task === ""
+    ) {
+
+        alert(
+            "Please enter a subject and task."
+        );
+
+        return;
+    }
+
+
+    let tasks =
+        JSON.parse(
+            localStorage.getItem("tasks")
+        ) || [];
+
+
+    let newTask = {
+
+        subject: subject,
+
+        task: task,
+
+        priority: priority,
+
+        date: date
+
+    };
+
+
+    tasks.push(newTask);
+
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+
+    displayTasks();
+
+
+    document.getElementById("task-subject").value =
+        "";
+
+    document.getElementById("task-input").value =
+        "";
+
+    document.getElementById("task-date").value =
+        "";
+
+
+    document.getElementById("task-count").innerHTML =
+        tasks.length;
+
+}
+
+
+
+// ===============================
+// Delete Task
+// ===============================
+
+function deleteTask(index) {
+
+    let tasks =
+        JSON.parse(
+            localStorage.getItem("tasks")
+        ) || [];
+
+
+    tasks.splice(index, 1);
+
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+
+    displayTasks();
+
+}
+
+
+
+// ===============================
+// Complete Task
+// ===============================
+
+function completeTask(index) {
+
+    let tasks =
+        JSON.parse(
+            localStorage.getItem("tasks")
+        ) || [];
+
+    tasks[index].completed = true;
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+    displayTasks();
+}
+
+
+// ===============================
+// Display Saved Tasks
+// ===============================
+
+function displayTasks() {
+
+    let tasks =
+        JSON.parse(
+            localStorage.getItem("tasks")
+        ) || [];
+
+
+    let taskList =
+        document.getElementById("task-list");
+
+
+    taskList.innerHTML = "";
+
+
+    tasks.forEach(function(task, index) {
+
+        taskList.innerHTML +=
+
+            "<div class=\"task-item\">" +
+
+            "<strong style=\"" +
+(task.completed ? "text-decoration: line-through; opacity: 0.6;" : "") +
+"\">" +
+"📚 " +
+task.subject +
+"</strong>" +
+
+            "<p style=\"" +
+(task.completed ? "text-decoration: line-through; opacity: 0.6;" : "") +
+"\">" +
+"📝 " +
+task.task +
+"</p>" +
+
+           "<p class=\"task-priority " +
+task.priority.toLowerCase() +
+"\">" +
+"⭐ " + task.priority +
+"</p>" +
+
+            (
+                task.date
+                ? "<p>📅 Due: " +
+                  task.date +
+                  "</p>"
+                : ""
+            ) +
+
+            "<button onclick=\"completeTask(" + index + ")\">" +
+            "☑️ Complete" +
+            "</button> " +
+
+            "<button onclick=\"deleteTask(" +
+            index +
+            ")\">" +
+            "🗑️ Delete" +
+            "</button>" +
+
+            "</div>";
+
+    });
+
+
+    document.getElementById("task-count").innerHTML =
+        tasks.length;
+
+}
+
+
+
+// ===============================
+// Count Tools
+// ===============================
+
+let toolCount =
+    document.querySelectorAll(
+        ".tool-card"
+    ).length;
+
+
+document.getElementById("tool-count").innerHTML =
+    toolCount;
+
+
+
+// ===============================
+// Load Saved Tasks
+// ===============================
+
+displayTasks();
+
+
+</script>
+
+</body>
+</html>
