@@ -6,8 +6,20 @@
 </head>
 
 <body>
+<nav class="navbar">
 
-<header class="main-header">
+    <a href="#home">🏠 Home</a>
+    <a href="#tools">🛠️ Tools</a>
+    <a href="#planner">📚 Planner</a>
+    <a href="#about">ℹ️ About</a>
+
+    <button id="theme-toggle" onclick="toggleDarkMode()">
+    🌙 Dark Mode
+</button>
+
+</nav>
+
+<header class="main-header" id="home">
     <h1>🎓 Student Tool Kit</h1>
     <p>Your little digital student assistant</p>
 </header>
@@ -48,7 +60,7 @@
 </div>
 
 
-<h2 class="tools-title">🛠️ Student Tools</h2>
+<h2 class="tools-title" id="tools">🛠️ Student Tools</h2>
 
 
 <div class="tools-container">
@@ -210,7 +222,7 @@
 
 
     <!-- Study Planner -->
-    <div class="tool-card">
+    <div class="tool-card" id="planner"></div>
 
         <h2>📚 Study Planner & Tasks</h2>
 
@@ -607,6 +619,12 @@ function displayTasks() {
 
 
     taskList.innerHTML = "";
+    if (tasks.length === 0) {
+
+    taskList.innerHTML =
+        "<p class=\"empty-state\">📭 No tasks yet. Add your first study task!</p>";
+
+}
 
 
     tasks.forEach(function(task, index) {
@@ -687,7 +705,78 @@ document.getElementById("tool-count").innerHTML =
 displayTasks();
 
 
+// ===============================
+// V2.2 — Dark Mode
+// ===============================
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    let button =
+        document.getElementById("theme-toggle");
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        button.innerHTML = "☀️ Light Mode";
+
+        localStorage.setItem("theme", "dark");
+
+    } else {
+
+        button.innerHTML = "🌙 Dark Mode";
+
+        localStorage.setItem("theme", "light");
+
+    }
+
+}
+displayTasks();
+
+
+// ===============================
+// Load Saved Theme
+// ===============================
+
+let savedTheme =
+    localStorage.getItem("theme");
+
+let themeButton =
+    document.getElementById("theme-toggle");
+
+
+if (savedTheme === "dark") {
+
+    document.body.classList.add("dark-mode");
+
+    themeButton.innerHTML =
+        "☀️ Light Mode";
+
+}
+
 </script>
+
+<section class="about-section" id="about">
+
+    <h2>ℹ️ About Student Tool Kit</h2>
+
+    <p>
+        Student Tool Kit is a simple digital assistant
+        designed to help students calculate, plan, and
+        organize their studies.
+    </p>
+
+    <p>
+        Built with ❤️ using Nova
+    </p>
+        <p> Nova is the assistant powering this project. 🤖✨
+
+        </p>
+       <p>With appreciation to AK ✨
+
+       </p>
+
+</section>
 
 </body>
 </html>
